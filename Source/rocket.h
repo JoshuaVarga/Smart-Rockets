@@ -19,25 +19,29 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2f acceleration;
 
-	float fitness;
+	double fitness;
 	std::vector<sf::Vector2f> dna;
 
 	bool crashed = false;
 
-	float heading(sf::Vector2f vector);
+	double round(double d);
+	double heading(sf::Vector2f vector);
+	double map(double x, double in_min, double in_max, double out_min, double out_max);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
 public:
-	Rocket();
+	Rocket() {};
+	Rocket(int stepLimit, sf::Texture& texture);
+	Rocket(std::vector<sf::Vector2f> newDna, sf::Texture& texture);
 
 	void applyForce(sf::Vector2f force);
 	void collision(sf::Sprite earth, sf::Sprite asteroid);
 
 	void calculateFitness(sf::Sprite asteroid);
 	float getFitness();
+	std::vector<sf::Vector2f> getDna();
 
-	void init(int stepLimit);
 	void update(int step);
 	
 };

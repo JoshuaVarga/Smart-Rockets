@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "rocket.h"
+#include "geneticalgorithm.h"
 
 class Application
 {
@@ -13,10 +14,12 @@ private:
 
 	sf::RenderWindow window;
 
-	sf::Texture asteroidTexture, earthTexture;
+	sf::Texture asteroidTexture, earthTexture, rocketTexture;
 	sf::Sprite asteroid, earth;
 
 	std::vector<Rocket> rockets;
+
+	GeneticAlgorithm geneticAlgorithm;
 
 public:
 	Application(int w, int h, int s, int p, int m);

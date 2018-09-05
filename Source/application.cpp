@@ -15,6 +15,9 @@ Application::Application(int w, int h, int s, int p, int m)
 	// Random seed.
 	srand((unsigned int)time(NULL));
 
+	// Rocket
+	rocketTexture.loadFromFile("Assets/rocket.png");
+
 	// Asteroid.
 	asteroidTexture.loadFromFile("Assets/asteroid.png");
 	asteroid.setTexture(asteroidTexture);
@@ -30,8 +33,7 @@ Application::Application(int w, int h, int s, int p, int m)
 
 	for (int i = 0; i < populationSize; i++)
 	{
-		Rocket rocket;
-		rocket.init(stepLimit);
+		Rocket rocket(stepLimit, rocketTexture);
 		rockets[i] = rocket;
 	}
 }
@@ -66,8 +68,9 @@ void Application::run()
 
 			for (int i = 0; i < populationSize; i++)
 			{
-				Rocket rocket;
-				rocket.init(stepLimit);
+				rockets[i].calculateFitness(asteroid);
+				geneticAlgorithm.createGenePool(rockets);
+				Rocket rocket(geneticAlgorithm.evolve(), rocketTexture);
 				rockets[i] = rocket;
 			}
 		}
@@ -76,16 +79,13 @@ void Application::run()
 
 		window.clear();
 
-		for (int i = 0; i < rockets.size(); i++)
+		for (int i = 0; i < populationSize; i++)
 		{
 			rockets[i].update(step);
-			rockets[i].calculateFitness(asteroid);
 			rockets[i].collision(earth, earth);
 			window.draw(rockets[i]);
 		}
-
-		std::cout << rockets[0].getFitness() << "\n";
-
+		
 		window.draw(earth);
 		window.draw(asteroid);
 

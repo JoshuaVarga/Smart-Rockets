@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="geneticalgorithm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="rocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="geneticalgorithm.h" />
     <ClInclude Include="rocket.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
