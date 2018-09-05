@@ -66,11 +66,17 @@ void Application::run()
 		{
 			step = 0;
 
-			for (int i = 0; i < populationSize; i++)
+			geneticAlgorithm.createGenePool(rockets);
+			double avg = 0;
+			for (int i = 0; i < (int)rockets.size(); i++)
 			{
-				rockets[i].calculateFitness(asteroid);
-				geneticAlgorithm.createGenePool(rockets);
+				avg += rockets[i].getFitness();
+			}
+			std::cout << "avg: " << avg / rockets.size() << std::endl;
+			for (int i = 0; i < (int)rockets.size(); i++)
+			{
 				Rocket rocket(geneticAlgorithm.evolve(), rocketTexture);
+				//Rocket rocket(stepLimit, rocketTexture);
 				rockets[i] = rocket;
 			}
 		}
@@ -81,8 +87,12 @@ void Application::run()
 
 		for (int i = 0; i < populationSize; i++)
 		{
-			rockets[i].update(step);
-			rockets[i].collision(earth, earth);
+			rockets[i].calculateFitness(asteroid);
+			if (step < stepLimit)
+			{
+				rockets[i].update(step);
+			}
+			rockets[i].collision(earth, asteroid);
 			window.draw(rockets[i]);
 		}
 		

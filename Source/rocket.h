@@ -39,7 +39,8 @@ public:
 	void collision(sf::Sprite earth, sf::Sprite asteroid);
 
 	void calculateFitness(sf::Sprite asteroid);
-	float getFitness();
+	double getFitness();
+	void setFitness(double newFitness);
 	std::vector<sf::Vector2f> getDna();
 
 	void update(int step);

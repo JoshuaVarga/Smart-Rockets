@@ -3,6 +3,20 @@
 void GeneticAlgorithm::createGenePool(std::vector<Rocket>& rockets)
 {
 	genePool.clear();
+	double maxfit = 0;
+
+	for (int i = 0; i < (int)rockets.size(); i++)
+	{
+		if (rockets[i].getFitness() > maxfit)
+		{
+			maxfit = rockets[i].getFitness();
+		}
+	}
+
+	for (int i = 0; i < (int)rockets.size(); i++)
+	{
+		rockets[i].setFitness(rockets[i].getFitness() / maxfit);
+	}
 	
 	for (int i = 0; i < (int)rockets.size(); i++)
 	{
@@ -18,11 +32,8 @@ std::vector<sf::Vector2f> GeneticAlgorithm::evolve()
 {
 	std::vector<sf::Vector2f> parentA, parentB, child;
 
-	int a = rand() % genePool.size();
-	int b = rand() % genePool.size();
-
-	parentA = genePool[a];
-	parentB = genePool[b];
+	parentA = genePool[rand() % genePool.size()];
+	parentB = genePool[rand() % genePool.size()];
 
 	for (int i = 0; i < (int)parentA.size(); i++)
 	{

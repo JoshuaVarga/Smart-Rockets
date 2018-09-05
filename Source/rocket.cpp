@@ -31,7 +31,7 @@ Rocket::Rocket(int stepLimit, sf::Texture& texture)
 
 	for (int i = 0; i < stepLimit; i++)
 	{
-		dna.push_back(sf::Vector2f(rand() % 3 - 1, rand() % 3 - 1));
+		dna.push_back(sf::Vector2f((float)(rand() % 3 - 1), (float)(rand() % 3 - 1)));
 	}
 }
 
@@ -55,19 +55,27 @@ void Rocket::collision(sf::Sprite earth, sf::Sprite asteroid)
 {
 	if (position.x < 0 || position.x > 480 || position.y < 0 || position.y > 640)
 	{
+		fitness -= 200;
 		crashed = true;
 	}
 	
 	if (earth.getGlobalBounds().intersects(sprite.getGlobalBounds()))
 	{
+		fitness -= 200;
 		crashed = true;
 	}
 
 	if (asteroid.getGlobalBounds().intersects(sprite.getGlobalBounds()))
 	{
 		position = asteroid.getPosition();
-		fitness += 1;
+		sprite.setPosition(position);
+		fitness += 200;
 		crashed = true;
+	}
+
+	if (fitness < 0)
+	{
+		fitness = 0;
 	}
 }
 
@@ -76,13 +84,17 @@ void Rocket::calculateFitness(sf::Sprite asteroid)
 	float distance = sqrt(pow((asteroid.getPosition().x - position.x), 2) +
 		pow((asteroid.getPosition().y - position.y), 2));
 
-	fitness = map(distance, 0, 640, 0, 1);
-	std::cout << fitness << std::endl;
+	fitness = map(distance, 0, 640, 640, 0);
 }
 
-float Rocket::getFitness()
+double Rocket::getFitness()
 {
 	return fitness;
+}
+
+void Rocket::setFitness(double newFitness)
+{
+	fitness = newFitness;
 }
 
 std::vector<sf::Vector2f> Rocket::getDna()
@@ -100,6 +112,6 @@ void Rocket::update(int step)
 		acceleration = sf::Vector2f(0, 0);
 
 		sprite.setPosition(position);
-		sprite.setRotation(heading(velocity) + 90);
+		sprite.setRotation((float)(heading(velocity) + 90));
 	}
 }
