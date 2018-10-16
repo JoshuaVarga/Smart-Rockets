@@ -1,3 +1,11 @@
+/**
+rocket.h
+Purpose: Rocket capable of learning through genetic algorithms.
+
+@author Joshua Varga
+@version 1.0
+*/
+
 #ifndef   ROCKET_H
 #define   ROCKET_H
 

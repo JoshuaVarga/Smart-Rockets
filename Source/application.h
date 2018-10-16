@@ -1,3 +1,11 @@
+/**
+rocket.h
+Purpose: Core of the program.
+
+@author Joshua Varga
+@version 1.0
+*/
+
 #ifndef   APPLICATION_H
 #define   APPLICATION_H
 

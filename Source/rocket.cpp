@@ -1,9 +1,12 @@
-#include "rocket.h"
+/**
+	rocket.cpp
+	Purpose: Rocket capable of learning through genetic algorithms.
 
-double Rocket::round(double d)
-{
-	return floor(d + 0.5);
-}
+	@author Joshua Varga
+	@version 1.0
+*/
+
+#include "rocket.h"
 
 double Rocket::heading(sf::Vector2f vector)
 {

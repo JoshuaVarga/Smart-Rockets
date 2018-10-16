@@ -1,3 +1,11 @@
+/**
+rocket.cpp
+Purpose: Core of the program.
+
+@author Joshua Varga
+@version 1.0
+*/
+
 #include "application.h"
 
 Application::Application(int w, int h, int s, int p, int m)
