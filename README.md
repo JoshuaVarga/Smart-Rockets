@@ -5,9 +5,9 @@ A visual demonstration of genetic algorithms using SFML and C++.
 ![image](https://user-images.githubusercontent.com/8739373/192866365-45930ba4-2f88-4dc6-b9b1-277931e0cdb8.png)
 
 ## Index
-Step limit: How many frames each generation runs for.
-Population size: The amount of rockets in each generation.
-Mutation rate: Chance per rocket to have it's gene randomly muated.
+Step limit: How many frames each generation runs for.  
+Population size: The amount of rockets in each generation.  
+Mutation rate: Chance per rocket to have it's gene randomly muated.  
 
 ## Compiling
 You Need:
