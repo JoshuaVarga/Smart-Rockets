@@ -10,7 +10,7 @@
 
 double Rocket::heading(sf::Vector2f vector)
 {
-	return (180 / M_PI) * atan2 (vector.y, vector.x);
+	return (180 / M_PI) * atan2(vector.y, vector.x);
 }
 
 double Rocket::map(double x, double in_min, double in_max, double out_min, double out_max)
@@ -19,12 +19,12 @@ double Rocket::map(double x, double in_min, double in_max, double out_min, doubl
 	return out_min + slope * (x - in_min);
 }
 
-void Rocket::draw(sf::RenderTarget & target, sf::RenderStates states) const
+void Rocket::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	target.draw(sprite, states);
 }
 
-Rocket::Rocket(int stepLimit, sf::Texture& texture)
+Rocket::Rocket(int stepLimit, sf::Texture &texture)
 {
 	position = sf::Vector2f(240, 624);
 	velocity = sf::Vector2f(0, 0);
@@ -38,7 +38,7 @@ Rocket::Rocket(int stepLimit, sf::Texture& texture)
 	}
 }
 
-Rocket::Rocket(std::vector<sf::Vector2f> newDna, sf::Texture & texture)
+Rocket::Rocket(std::vector<sf::Vector2f> newDna, sf::Texture &texture)
 {
 	position = sf::Vector2f(240, 624);
 	velocity = sf::Vector2f(0, 0);
@@ -61,7 +61,7 @@ void Rocket::collision(sf::Sprite earth, sf::Sprite asteroid)
 		fitness -= 200;
 		crashed = true;
 	}
-	
+
 	if (earth.getGlobalBounds().intersects(sprite.getGlobalBounds()))
 	{
 		fitness -= 200;
@@ -85,7 +85,7 @@ void Rocket::collision(sf::Sprite earth, sf::Sprite asteroid)
 void Rocket::calculateFitness(sf::Sprite asteroid)
 {
 	float distance = sqrt(pow((asteroid.getPosition().x - position.x), 2) +
-		pow((asteroid.getPosition().y - position.y), 2));
+						  pow((asteroid.getPosition().y - position.y), 2));
 
 	fitness = map(distance, 0, 640, 640, 0);
 }

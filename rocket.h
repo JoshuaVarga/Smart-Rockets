@@ -6,8 +6,8 @@ Purpose: Rocket capable of learning through genetic algorithms.
 @version 1.0
 */
 
-#ifndef   ROCKET_H
-#define   ROCKET_H
+#ifndef ROCKET_H
+#define ROCKET_H
 
 #define _USE_MATH_DEFINES
 
@@ -21,7 +21,7 @@ class Rocket : public sf::Drawable
 {
 private:
 	sf::Texture texture;
-	sf::Sprite  sprite;
+	sf::Sprite sprite;
 
 	sf::Vector2f position;
 	sf::Vector2f velocity;
@@ -36,12 +36,12 @@ private:
 	double heading(sf::Vector2f vector);
 	double map(double x, double in_min, double in_max, double out_min, double out_max);
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 public:
-	Rocket() {};
-	Rocket(int stepLimit, sf::Texture& texture);
-	Rocket(std::vector<sf::Vector2f> newDna, sf::Texture& texture);
+	Rocket(){};
+	Rocket(int stepLimit, sf::Texture &texture);
+	Rocket(std::vector<sf::Vector2f> newDna, sf::Texture &texture);
 
 	void applyForce(sf::Vector2f force);
 	void collision(sf::Sprite earth, sf::Sprite asteroid);
@@ -52,7 +52,6 @@ public:
 	std::vector<sf::Vector2f> getDna();
 
 	void update(int step);
-	
 };
 
 #endif // ROCKET_H

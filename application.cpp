@@ -8,7 +8,7 @@ Purpose: Core of the program.
 
 #include "application.h"
 
-Application::Application(int w, int h, int s, int p, int m)
+Application::Application(int w, int h, int s, int p, float m)
 {
 	width = w;
 	height = h;
@@ -17,22 +17,22 @@ Application::Application(int w, int h, int s, int p, int m)
 	mutationRate = m;
 
 	window.create(sf::VideoMode(width, height), "Smart Rockets",
-		sf::Style::Titlebar | sf::Style::Close);
+				  sf::Style::Titlebar | sf::Style::Close);
 	window.setFramerateLimit(60);
 
 	// Random seed.
 	srand((unsigned int)time(NULL));
 
 	// Rocket
-	rocketTexture.loadFromFile("Assets/rocket.png");
+	rocketTexture.loadFromFile("assets/rocket.png");
 
 	// Asteroid.
-	asteroidTexture.loadFromFile("Assets/asteroid.png");
+	asteroidTexture.loadFromFile("assets/asteroid.png");
 	asteroid.setTexture(asteroidTexture);
 	asteroid.setPosition(224, 64);
 
 	// Earth.
-	earthTexture.loadFromFile("Assets/earth.png");
+	earthTexture.loadFromFile("assets/earth.png");
 	earth.setTexture(earthTexture);
 	earth.setPosition(176, 128);
 	earth.setScale(8, 8);
@@ -83,8 +83,8 @@ void Application::run()
 			std::cout << "avg: " << avg / rockets.size() << std::endl;
 			for (int i = 0; i < (int)rockets.size(); i++)
 			{
-				Rocket rocket(geneticAlgorithm.evolve(), rocketTexture);
-				//Rocket rocket(stepLimit, rocketTexture);
+				Rocket rocket(geneticAlgorithm.evolve(mutationRate), rocketTexture);
+				// Rocket rocket(stepLimit, rocketTexture);
 				rockets[i] = rocket;
 			}
 		}
@@ -103,7 +103,7 @@ void Application::run()
 			rockets[i].collision(earth, asteroid);
 			window.draw(rockets[i]);
 		}
-		
+
 		window.draw(earth);
 		window.draw(asteroid);
 

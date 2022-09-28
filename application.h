@@ -6,8 +6,8 @@ Purpose: Core of the program.
 @version 1.0
 */
 
-#ifndef   APPLICATION_H
-#define   APPLICATION_H
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include <SFML/Graphics.hpp>
 
@@ -17,7 +17,9 @@ Purpose: Core of the program.
 class Application
 {
 private:
-	int width, height, stepLimit, populationSize, mutationRate;
+	int width, height, stepLimit, populationSize;
+	float mutationRate;
+
 	int step = 0;
 
 	sf::RenderWindow window;
@@ -30,7 +32,7 @@ private:
 	GeneticAlgorithm geneticAlgorithm;
 
 public:
-	Application(int w, int h, int s, int p, int m);
+	Application(int w, int h, int s, int p, float m);
 
 	void pollEvents();
 	void run();

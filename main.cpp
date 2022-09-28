@@ -11,7 +11,8 @@
 int main()
 {
 	// Get Parameters.
-	int stepLimit, populationSize, mutationRate;
+	int stepLimit, populationSize;
+	float mutationRate;
 
 	std::cout << "Enter a step limit: ";
 	std::cin >> stepLimit;
